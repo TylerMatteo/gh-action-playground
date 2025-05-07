@@ -1,0 +1,20 @@
+name: Action with Inputs
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+          description: "The environment to target"
+          type: choice
+          required: true
+          options:
+              - production
+              - staging
+              - foo
+jobs:
+  test-environment:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - run: echo "🎉 The job running against environment ${{ inputs.environment }}."
+
